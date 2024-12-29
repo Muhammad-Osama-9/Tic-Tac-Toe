@@ -7,10 +7,10 @@ function App() {
       <div id="game-container">
         <ol id="players">
           <li>
-            <Player name="Muhammad" symbol="poool" />
+            <Player initialName="Muhammad" symbol="poool" />
           </li>
           <li>
-            <Player name="ahmed" symbol="X" />
+            <Player initialName="ahmed" symbol="X" />
           </li>
         </ol>
       </div>
