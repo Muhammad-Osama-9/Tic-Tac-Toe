@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 
-export default function Player({ initialName, symbol ,activeSymbol}) {
+export default function Player({ initialName, symbol, activeSymbol }) {
 
     const [playerName, setPlayerName] = useState(initialName);
     const [newName, setNewName] = useState(false);
-    console.log( ` player Symbol ${symbol}`) ; 
+    console.log(` player Symbol ${symbol}`);
     let buttonName = "Edit";
 
 
@@ -25,12 +25,12 @@ export default function Player({ initialName, symbol ,activeSymbol}) {
     }
     return (
         <li className={activeSymbol === symbol ? 'active' : undefined}>
-        <span className="player">
-            {playersection}
-            <button onClick={handleEditingClick}>{buttonName}</button>
-            <span className="player-symbol">{symbol}</span>
+            <span className="player">
+                {playersection}
+                <span className="player-symbol">{symbol}</span>
+                <button onClick={handleEditingClick}>{buttonName}</button>
 
-        </span>
+            </span>
 
         </li>
     );

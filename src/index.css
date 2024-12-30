@@ -101,6 +101,8 @@ h1 {
 }
 
 .player {
+  display: flex;
+  align-items: center;
   border: 2px solid transparent;
   padding: 0.5rem;
   border-radius: 4px;

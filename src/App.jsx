@@ -17,7 +17,7 @@ function handleActivePlayerChange() {
             <Player initialName="player 1" symbol="O" activeSymbol={activePlayer} />
           </li>
           <li>
-            <Player initialName="Player 2" symbol="X" />
+            <Player initialName="Player 2" symbol="X" activeSymbol={activePlayer} />
           </li>
         </ol>
         <GameBoard active={handleActivePlayerChange} activeSymbol={activePlayer}/>
