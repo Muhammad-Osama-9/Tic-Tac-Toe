@@ -69,7 +69,8 @@ h1 {
 
 #players li {
   display: flex;
-  align-items: center;
+
+  justify-content: center;
   width: 50%;
   border: 2px solid transparent;
 }

@@ -13,12 +13,12 @@ function handleActivePlayerChange() {
     <main>
       <div id="game-container">
         <ol id="players" className='highlight-player'>
-          <li>
+          
             <Player initialName="player 1" symbol="O" activeSymbol={activePlayer} />
-          </li>
-          <li>
+          
+         
             <Player initialName="Player 2" symbol="X" activeSymbol={activePlayer} />
-          </li>
+         
         </ol>
         <GameBoard active={handleActivePlayerChange} activeSymbol={activePlayer}/>
       </div>

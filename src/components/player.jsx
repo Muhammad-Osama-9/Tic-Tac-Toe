@@ -11,6 +11,7 @@ export default function Player({ initialName, symbol, activeSymbol }) {
 
     function handleEditingClick() {
         setNewName(newName => !newName);
+        
     }
 
     function handleChange(event) {
