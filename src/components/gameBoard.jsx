@@ -1,23 +1,31 @@
-import { useState } from "react";
+// import { useState } from "react";
 
 const initialGameBoard = [Array(3).fill(null),
 Array(3).fill(null),
 Array(3).fill(null)];
 
-export default function GameBoard({ active, activeSymbol }) {
+export default function GameBoard({ active, turns }) {
+    let gameBoard = initialGameBoard;
 
-    const [gameBoard, setGameBoard] = useState(initialGameBoard);
-    function handleSelectSquare(rowIndex, colIndex) {
 
-        setGameBoard(prevGameBoard => {
-            const updatedGameBoard = [...prevGameBoard.map(innerArray => [...innerArray])];
-            updatedGameBoard[rowIndex][colIndex] = activeSymbol ;
-            console.log(updatedGameBoard);
-            return updatedGameBoard;
-        });
-    
-        active();
+    for (let turn of turns) {
+        const { square, player } = turn;
+        const { row, col } = square;
+        gameBoard[row][col] = player;
     }
+    // const [gameBoard, setGameBoard] = useState(initialGameBoard);
+    // function handleSelectSquare(rowIndex, colIndex) {
+
+    //     setGameBoard(prevGameBoard => {
+    //         const updatedGameBoard = [...prevGameBoard.map(innerArray => [...innerArray])];
+    //         updatedGameBoard[rowIndex][colIndex] = activeSymbol ;
+    //         console.log(updatedGameBoard);
+    //         return updatedGameBoard;
+    //     });
+
+    //     active();
+    // }
+    console.log(gameBoard);
     return (
         <ol id="game-board">
             {gameBoard.map((row, rowIndex) => (
@@ -26,7 +34,7 @@ export default function GameBoard({ active, activeSymbol }) {
                         {row.map((playerSymbol, colIndex) => (
                             < li key={colIndex} >
 
-                                <button onClick={() => handleSelectSquare(rowIndex, colIndex, playerSymbol)}>{playerSymbol}</button>
+                                <button onClick={() => active(rowIndex, colIndex)}>{playerSymbol}</button>
 
                             </li>
                         )

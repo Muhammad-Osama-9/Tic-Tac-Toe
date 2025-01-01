@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function Player({ initialName, symbol, activeSymbol }) {
 
-    const [playerName, setPlayerName] = useState(initialName);
+      const [playerName, setPlayerName] = useState(initialName);
     const [newName, setNewName] = useState(false);
     console.log(` player Symbol ${symbol}`);
     let buttonName = "Edit";
