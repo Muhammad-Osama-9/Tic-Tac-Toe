@@ -1,29 +1,49 @@
 import Player from './components/player'
 import GameBoard from './components/gameBoard.jsx';
 import { useState } from 'react';
-import Log from './components/log.jsx'; 
+import Log from './components/log.jsx';
+
+import Win from './algo/wining.jsx';
+
+function determinePlayer(prevTurns) {
+
+  let currentPlayer = 'X';
+  if (prevTurns.length > 0 && prevTurns[0].player == 'X') {
+    currentPlayer = 'O';
+  }
+  return currentPlayer;
+}
+
 function App() {
-  const [activePlayer, setActivePlayer] = useState('X');
+
   const [gameTurns, SetGameTurns] = useState([]);
+
+  const activePlayer = determinePlayer(gameTurns);
 
 
   function handleActivePlayerChange(rowIndex, colIndex) {
-    setActivePlayer((activePlayer) => activePlayer === 'X' ? 'O' : 'X');
+
+
     SetGameTurns(prevTurns => {
 
-      let currentPlayer = 'X';
-      if (prevTurns.length > 0 && prevTurns[0].player == 'X') {
-        currentPlayer = 'O';
-      }
 
-      const updatedTurns = [{ square: { row: rowIndex, col: colIndex }, player: currentPlayer }, ...prevTurns];
+
+      const updatedTurns = [{ square: { row: rowIndex, col: colIndex }, player: activePlayer }, ...prevTurns];
       return updatedTurns;
 
     });
 
+   
   }
-  console.log(gameTurns);
+
+
+
+  console.log(activePlayer);
+
+
+
   return (
+
     <main>
       <div id="game-container">
         <ol id="players" className='highlight-player'>
@@ -36,7 +56,8 @@ function App() {
         </ol>
         <GameBoard active={handleActivePlayerChange} turns={gameTurns} />
       </div>
-      <Log turns = {gameTurns}/>
+      <Win turns={gameTurns} />
+      <Log turns={gameTurns} />
     </main>
   );
 }

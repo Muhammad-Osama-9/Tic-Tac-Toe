@@ -24,6 +24,8 @@ export default function Player({ initialName, symbol, activeSymbol }) {
         playersection = <input type="text" placeholder="Name ... " value={playerName} required onChange={handleChange} />;
         buttonName = "Save";
     }
+
+    
     return (
         <li className={activeSymbol === symbol ? 'active' : undefined}>
             <span className="player">
