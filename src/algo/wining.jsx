@@ -2,7 +2,7 @@
 import { initialGameBoard } from '../components/gameBoard.jsx';
 
 
-const gameBoard = initialGameBoard.map(row => row.map(col => col));
+let gameBoard = initialGameBoard.map(row => row.map(col => col));
 
 const winingCombinations = [
     [{ row: 0, col: 0 }, { row: 0, col: 1 }, { row: 0, col: 2 }],
@@ -11,11 +11,18 @@ const winingCombinations = [
     [{ row: 1, col: 0 }, { row: 1, col: 1 }, { row: 1, col: 2 }],
     [{ row: 2, col: 0 }, { row: 2, col: 1 }, { row: 2, col: 2 }],
     [{ row: 2, col: 0 }, { row: 1, col: 1 }, { row: 0, col: 2 }],
+    [{ row: 0, col: 1 }, { row: 1, col: 1 }, { row: 2, col: 1 }],
+    [{ row: 0, col: 2 }, { row: 1, col: 2 }, { row: 2, col: 2 }]
 ];
 
 
 
-export default function Win({ turns }) {
+export default function Win({ turns, rematch }) {
+
+    if (turns.length === 0) {
+        gameBoard = initialGameBoard.map(row => row.map(col => col));
+    }
+
 
     for (let turn of turns) {
         const { square, player } = turn;
@@ -24,10 +31,14 @@ export default function Win({ turns }) {
     }
 
     let winner = winning();
-
+    console.log(` Winnng File  ${winner}`);
     return (
         <>
-            {(winner !== "None") && <h3 >Winner is {winner}</h3>}
+            {(winner !== "None") && <div id="game-over" >
+                <h2>Game Over </h2>
+                <p>{winner} {(winner !== "Draw") && <span>Won!</span>}</p>
+                <p><button onClick={rematch} >Rematch!</button></p>
+            </div>}
         </>
     );
 }
@@ -58,13 +69,26 @@ function winning() {
             if (win) {
                 winFlag = symbol
                 break;
-            };
+            }
+
 
         }
 
 
     }
+    let numOFNull = 0;
+    if (winFlag === "None") {
+        for (let i = 0; i < 3; i++) {
+            for (let j = 0; j < 3; j++) {
+                if (gameBoard[i][j] === null) {
+                    numOFNull++;
+                }
+            }
 
+        }
+        if (numOFNull === 0) winFlag = "Draw";
+    }
+    console.log(winFlag);
     return winFlag;
 
 }

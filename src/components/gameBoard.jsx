@@ -1,12 +1,12 @@
 // import { useState } from "react";
 
- export const initialGameBoard = [Array(3).fill(null),
+export const initialGameBoard = [Array(3).fill(null),
 Array(3).fill(null),
 Array(3).fill(null)];
 
 
 export default function GameBoard({ active, turns }) {
-    let gameBoard = initialGameBoard;
+    let gameBoard = [...initialGameBoard.map(array => [...array])];
 
 
     for (let turn of turns) {
@@ -14,10 +14,10 @@ export default function GameBoard({ active, turns }) {
         const { row, col } = square;
         gameBoard[row][col] = player;
     }
-    
+
     console.log(gameBoard);
 
-  
+
     return (
         <ol id="game-board">
             {gameBoard.map((row, rowIndex) => (
@@ -26,7 +26,7 @@ export default function GameBoard({ active, turns }) {
                         {row.map((playerSymbol, colIndex) => (
                             < li key={colIndex} >
 
-                                <button onClick={() => active(rowIndex, colIndex)} disabled ={playerSymbol !== null } >{playerSymbol}</button>
+                                <button onClick={() => active(rowIndex, colIndex)} disabled={playerSymbol !== null} >{playerSymbol}</button>
 
                             </li>
                         )

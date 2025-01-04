@@ -2,7 +2,6 @@ import Player from './components/player'
 import GameBoard from './components/gameBoard.jsx';
 import { useState } from 'react';
 import Log from './components/log.jsx';
-
 import Win from './algo/wining.jsx';
 
 function determinePlayer(prevTurns) {
@@ -14,12 +13,17 @@ function determinePlayer(prevTurns) {
   return currentPlayer;
 }
 
+
 function App() {
 
   const [gameTurns, SetGameTurns] = useState([]);
 
   const activePlayer = determinePlayer(gameTurns);
 
+  function handleRestart() {
+    SetGameTurns([]);
+
+  }
 
   function handleActivePlayerChange(rowIndex, colIndex) {
 
@@ -33,13 +37,12 @@ function App() {
 
     });
 
-   
+
   }
 
 
 
-  console.log(activePlayer);
-
+  console.log(gameTurns);
 
 
   return (
@@ -55,8 +58,9 @@ function App() {
 
         </ol>
         <GameBoard active={handleActivePlayerChange} turns={gameTurns} />
+        <Win turns={gameTurns} rematch={handleRestart} />
       </div>
-      <Win turns={gameTurns} />
+
       <Log turns={gameTurns} />
     </main>
   );
