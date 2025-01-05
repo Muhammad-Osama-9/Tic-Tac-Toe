@@ -13,14 +13,19 @@ const winingCombinations = [
     [{ row: 2, col: 0 }, { row: 1, col: 1 }, { row: 0, col: 2 }],
     [{ row: 0, col: 1 }, { row: 1, col: 1 }, { row: 2, col: 1 }],
     [{ row: 0, col: 2 }, { row: 1, col: 2 }, { row: 2, col: 2 }]
+
 ];
 
 
 
 export default function Win({ turns, rematch, winnerName, newGame }) {
 
+    let currentPlayer = 'X';
     if (turns.length === 0) {
         gameBoard = initialGameBoard.map(row => row.map(col => col));
+    }
+    else {
+        currentPlayer = turns[0].player;    
     }
 
 
@@ -30,7 +35,8 @@ export default function Win({ turns, rematch, winnerName, newGame }) {
         gameBoard[row][col] = player;
     }
 
-    let winner = winning();
+
+    let winner = winning(currentPlayer);
     let winnerPlayer = null;
     if ((winner !== "None")) {
         if (winner === 'Draw')
@@ -59,14 +65,13 @@ export default function Win({ turns, rematch, winnerName, newGame }) {
 
 
 
-function winning() {
+function winning(symbol ) {
     let winFlag = "None";
-    console.log(gameBoard);
-    let symbol = gameBoard[0][0];
+    
 
     for (let i = 0; i < 3; i++) {
 
-        symbol = gameBoard[0][i];
+
 
         if (symbol === null) continue;
 

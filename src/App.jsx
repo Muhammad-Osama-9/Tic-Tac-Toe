@@ -4,6 +4,11 @@ import { useState } from 'react';
 import Log from './components/log.jsx';
 import Win from './algo/wining.jsx';
 
+
+
+
+
+
 function determinePlayer(prevTurns) {
 
   let currentPlayer = 'X';
@@ -20,6 +25,7 @@ function App() {
     X: 'player 1',
     O: 'player 2'
   });
+
 
   const [gameTurns, SetGameTurns] = useState([]);
 
@@ -50,7 +56,7 @@ function App() {
     location.reload();
 
   }
-  
+
   function handlePlayerName(symbol, newName) {
     setPlayers(prevPlayers => {
       return {
@@ -62,7 +68,7 @@ function App() {
   }
 
 
-  console.log(gameTurns);
+
 
 
   return (
@@ -74,11 +80,12 @@ function App() {
           <Player initialName="player 1" symbol="X" activeSymbol={activePlayer} onChangeName={handlePlayerName} />
 
 
-          <Player initialName="Player 2" symbol="O" activeSymbol={activePlayer} onChangeName={handlePlayerName} />
+          <Player initialName="Player 2" symbol="O" activeSymbol={activePlayer} onChangeName={handlePlayerName}  />
+         
 
         </ol>
         <GameBoard active={handleActivePlayerChange} turns={gameTurns} />
-        <Win turns={gameTurns} rematch={handleRestart} winnerName={players} newGame={handleNewGame} />
+        <Win turns={gameTurns} rematch={handleRestart} winnerName={players} newGame={handleNewGame}  />
       </div>
 
       <Log turns={gameTurns} />
