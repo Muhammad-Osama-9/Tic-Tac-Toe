@@ -17,7 +17,7 @@ const winingCombinations = [
 
 
 
-export default function Win({ turns, rematch }) {
+export default function Win({ turns, rematch, winnerName, newGame }) {
 
     if (turns.length === 0) {
         gameBoard = initialGameBoard.map(row => row.map(col => col));
@@ -31,13 +31,27 @@ export default function Win({ turns, rematch }) {
     }
 
     let winner = winning();
-    console.log(` Winnng File  ${winner}`);
+    let winnerPlayer = null;
+    if ((winner !== "None")) {
+        if (winner === 'Draw')
+            winnerPlayer = 'Draw';
+        else
+            winnerPlayer = winnerName[winner];
+    }
+
+
+
+
+
     return (
         <>
             {(winner !== "None") && <div id="game-over" >
                 <h2>Game Over </h2>
-                <p>{winner} {(winner !== "Draw") && <span>Won!</span>}</p>
-                <p><button onClick={rematch} >Rematch!</button></p>
+                <p>{winnerPlayer} {(winner !== "Draw") && <span>Won!</span>}</p>
+                <div className="buttons">
+                    <button onClick={rematch} >Rematch!</button>
+                    <button onClick={newGame}>New Match</button>
+                </div>
             </div>}
         </>
     );

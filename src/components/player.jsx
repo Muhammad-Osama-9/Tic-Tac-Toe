@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 
-export default function Player({ initialName, symbol, activeSymbol }) {
+export default function Player({ initialName, symbol, activeSymbol, onChangeName }) {
 
-      const [playerName, setPlayerName] = useState(initialName);
+    const [playerName, setPlayerName] = useState(initialName);
     const [newName, setNewName] = useState(false);
     console.log(` player Symbol ${symbol}`);
     let buttonName = "Edit";
@@ -11,7 +11,9 @@ export default function Player({ initialName, symbol, activeSymbol }) {
 
     function handleEditingClick() {
         setNewName(newName => !newName);
-        
+        if (newName)
+            onChangeName(symbol, playerName);
+
     }
 
     function handleChange(event) {
@@ -25,7 +27,7 @@ export default function Player({ initialName, symbol, activeSymbol }) {
         buttonName = "Save";
     }
 
-    
+
     return (
         <li className={activeSymbol === symbol ? 'active' : undefined}>
             <span className="player">

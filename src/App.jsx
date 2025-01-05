@@ -16,6 +16,11 @@ function determinePlayer(prevTurns) {
 
 function App() {
 
+  const [players, setPlayers] = useState({
+    X: 'player 1',
+    O: 'player 2'
+  });
+
   const [gameTurns, SetGameTurns] = useState([]);
 
   const activePlayer = determinePlayer(gameTurns);
@@ -40,6 +45,21 @@ function App() {
 
   }
 
+  function handleNewGame() {
+
+    location.reload();
+
+  }
+  
+  function handlePlayerName(symbol, newName) {
+    setPlayers(prevPlayers => {
+      return {
+        ...prevPlayers,
+        [symbol]: newName
+      }
+    });
+
+  }
 
 
   console.log(gameTurns);
@@ -51,14 +71,14 @@ function App() {
       <div id="game-container">
         <ol id="players" className='highlight-player'>
 
-          <Player initialName="player 1" symbol="O" activeSymbol={activePlayer} />
+          <Player initialName="player 1" symbol="X" activeSymbol={activePlayer} onChangeName={handlePlayerName} />
 
 
-          <Player initialName="Player 2" symbol="X" activeSymbol={activePlayer} />
+          <Player initialName="Player 2" symbol="O" activeSymbol={activePlayer} onChangeName={handlePlayerName} />
 
         </ol>
         <GameBoard active={handleActivePlayerChange} turns={gameTurns} />
-        <Win turns={gameTurns} rematch={handleRestart} />
+        <Win turns={gameTurns} rematch={handleRestart} winnerName={players} newGame={handleNewGame} />
       </div>
 
       <Log turns={gameTurns} />
