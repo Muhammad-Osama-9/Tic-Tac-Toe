@@ -20,12 +20,14 @@ const winingCombinations = [
 
 export default function Win({ turns, rematch, winnerName, newGame }) {
 
+    console.log("win Func Execute .... ");
     let currentPlayer = 'X';
+
     if (turns.length === 0) {
         gameBoard = initialGameBoard.map(row => row.map(col => col));
     }
     else {
-        currentPlayer = turns[0].player;    
+        currentPlayer = turns[0].player;
     }
 
 
@@ -35,6 +37,7 @@ export default function Win({ turns, rematch, winnerName, newGame }) {
         gameBoard[row][col] = player;
     }
 
+    console.log(" Current player " + currentPlayer + " Game board  " + gameBoard);
 
     let winner = winning(currentPlayer);
     let winnerPlayer = null;
@@ -46,7 +49,7 @@ export default function Win({ turns, rematch, winnerName, newGame }) {
     }
 
 
-
+    console.log(`Winner ${winner}`)
 
 
     return (
@@ -65,9 +68,9 @@ export default function Win({ turns, rematch, winnerName, newGame }) {
 
 
 
-function winning(symbol ) {
+function winning(symbol) {
     let winFlag = "None";
-    
+
 
     for (let i = 0; i < 3; i++) {
 
@@ -107,7 +110,7 @@ function winning(symbol ) {
         }
         if (numOFNull === 0) winFlag = "Draw";
     }
-    console.log(winFlag);
+   
     return winFlag;
 
 }

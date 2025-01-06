@@ -1,12 +1,12 @@
 import { useState } from "react";
 
 
-export default function Player({ initialName, symbol, activeSymbol, onChangeName }) {
+export default function Player({ initialName, symbol, activeSymbol, onChangeName, isAI }) {
 
     const [playerName, setPlayerName] = useState(initialName);
     const [newName, setNewName] = useState(false);
     const [aiIsChecked, setAiIsChecked] = useState(false);
-    
+
     let buttonName = "Edit";
 
 
@@ -22,6 +22,7 @@ export default function Player({ initialName, symbol, activeSymbol, onChangeName
         onChangeName('O', 'AI');
         setPlayerName('AI');
         setAiIsChecked(aiIsChecked => !aiIsChecked);
+        isAI();
     }
 
     function handleChange(event) {
@@ -47,8 +48,8 @@ export default function Player({ initialName, symbol, activeSymbol, onChangeName
                 {(!aiIsChecked) && (<>
                     {(symbol === 'O') && (
                         <div className="ai-checkbox">
-                            <input type="checkbox" onChange={handleAiIsChecked} />
-                            <span>AI</span>
+
+                            <button onClick={handleAiIsChecked}>AI</button>
                         </div>
                     )}
                 </>
