@@ -88,6 +88,7 @@ function isGameOver(board) {
 }
 
 
+
 function minimax(board, isMax, alpha, beta, depth = 0) {
     if (isGameOver(board) || depth >= 5) {
         return evaluate(board);
