@@ -1,10 +1,17 @@
 <h1>
   <img src="public/game-logo.png" alt="Logo" style="width:50px; height:50px; vertical-align:middle;" />
   <span style="vertical-align:middle;">Tic Tac Toe</span>
+ 
+
 </h1>
+
+<h2> <a href="https://tic-tac-toe-gules-iota-86.vercel.app/" target="_blank" >to Play the Game</a> </h2>
 
 > Simple Tic Tac Toe Game with 2 Options to play against Human and Play against Computer 
 
+
+
+ 
 ## Local Setup 
 
 * 1st Need to Clone the repo
@@ -25,6 +32,7 @@ git clone https://github.com/Muhammad-Osama-9/Tic-Tac-Toe.git
 ```
 npm run dev 
 ```
+
 
 ## game Modes 
 
