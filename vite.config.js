@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/Tic-Tac-Toe/', // Use hyphens (-) to match the repository name
+  base: '/', // Set this to '/' if your app is hosted at the root
 });

@@ -36,6 +36,8 @@ function App() {
     O: 'player 2'
   });
 
+  
+  
 
   const [gameTurns, SetGameTurns] = useState([]);
 
